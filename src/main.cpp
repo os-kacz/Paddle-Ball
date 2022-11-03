@@ -1,6 +1,7 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
 #include "Game.h"
+#include "Vector.h"
 
 
 int main()
@@ -42,13 +43,16 @@ int main()
       {
         window.close();
       }
+      if (event.type == sf::Event::KeyPressed)
+      {
+        game.keyPressed(event);
+      }
     }
 
     //'update' element of the game loop
     game.update(dt);
 
-    window.clear(sf::Color::Black);
-
+    window.clear(sf::Color(12, 102, 129, 255));
     //'render' element of the game loop
     game.render();
     window.display();
