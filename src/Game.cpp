@@ -41,7 +41,20 @@ bool Game::init()
 
 void Game::update(float dt)
 {
-  ball.move();
+  if (going_up)
+  {
+    ball.move(0, 1.0f * speed * dt);
+  }
+  else
+  {
+    ball.move(0, -1.0f * speed * dt);
+  }
+  if
+    ((ball.getPosition().y > (window.getSize().y - ball.getGlobalBounds().height))
+     || (ball.getPosition().y < 0))
+  {
+    going_up = !going_up;
+  }
 }
 
 void Game::render()
@@ -60,8 +73,6 @@ void Game::mouseClicked(sf::Event event)
 {
   //get the click position
   sf::Vector2i click = sf::Mouse::getPosition(window);
-
-
 }
 
 void Game::keyPressed(sf::Event event)

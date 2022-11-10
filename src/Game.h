@@ -24,6 +24,8 @@ class Game
   sf::Texture ball_texture;
   bool in_menu;
   float speed = 200;
+  bool going_up = true;
+  bool going_right;
 
 };
 
