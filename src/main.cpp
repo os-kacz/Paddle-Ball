@@ -8,6 +8,7 @@ int main()
   std::cout << "You should see a window that opens as well as this writing to console..."
             << std::endl;
 
+
   // create window and set up
   sf::RenderWindow window(sf::VideoMode(1080, 720), "Pong");
   window.setFramerateLimit(60);

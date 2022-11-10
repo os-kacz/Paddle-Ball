@@ -22,7 +22,7 @@ class Game
   sf::Font font;
   sf::Texture ball_texture;
   bool in_menu;
-  float speed = 200;
+  float speed = 500;
   Vector ball_direction;
 };
 

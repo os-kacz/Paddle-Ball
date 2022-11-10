@@ -36,10 +36,8 @@ bool Game::init()
   ball.setTexture(ball_texture);
   spawn();
 
-
-  ball_direction.x = 13;
-  ball_direction.y = 21;
-
+  ball_direction.x = 9;
+  ball_direction.y = 26;
   ball_direction.normalise();
 
   return true;
@@ -48,7 +46,16 @@ bool Game::init()
 void Game::update(float dt)
 {
   ball.move(ball_direction.x * speed * dt, ball_direction.y * speed * dt);
-  //if (ball.getGlobalBounds().height )
+  if (ball.getPosition().y < 0 || (ball.getPosition().y > (window.getSize().y - ball.getGlobalBounds().height)))
+  {
+    ball_direction.y = ball_direction.y * -1;
+    ball_direction.normalise();
+  }
+  if (ball.getPosition().x < 0 || (ball.getPosition().x > (window.getSize().x - ball.getGlobalBounds().width)))
+  {
+    ball_direction.x = ball_direction.x * -1;
+    ball_direction.normalise();
+  }
 }
 
 void Game::render()
