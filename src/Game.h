@@ -1,7 +1,6 @@
-
 #ifndef PONG_GAME_H
 #define PONG_GAME_H
-
+#include "Vector.h"
 #include <SFML/Graphics.hpp>
 
 class Game
@@ -24,9 +23,7 @@ class Game
   sf::Texture ball_texture;
   bool in_menu;
   float speed = 200;
-  bool going_up = true;
-  bool going_right;
-
+  Vector ball_direction;
 };
 
 #endif // PONG_GAME_H

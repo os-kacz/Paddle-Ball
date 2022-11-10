@@ -1,4 +1,3 @@
-
 #include "Game.h"
 #include "Vector.h"
 #include <iostream>
@@ -36,25 +35,20 @@ bool Game::init()
 
   ball.setTexture(ball_texture);
   spawn();
+
+
+  ball_direction.x = 13;
+  ball_direction.y = 21;
+
+  ball_direction.normalise();
+
   return true;
 }
 
 void Game::update(float dt)
 {
-  if (going_up)
-  {
-    ball.move(0, 1.0f * speed * dt);
-  }
-  else
-  {
-    ball.move(0, -1.0f * speed * dt);
-  }
-  if
-    ((ball.getPosition().y > (window.getSize().y - ball.getGlobalBounds().height))
-     || (ball.getPosition().y < 0))
-  {
-    going_up = !going_up;
-  }
+  ball.move(ball_direction.x * speed * dt, ball_direction.y * speed * dt);
+  //if (ball.getGlobalBounds().height )
 }
 
 void Game::render()
@@ -88,9 +82,4 @@ void Game::spawn()
   ball.setScale(0.5,0.5);
   ball.setPosition(window.getSize().x / 2 - ball.getGlobalBounds().width / 2,
                    window.getSize().y / 2 - ball.getGlobalBounds().height / 2);
-}
-
-void Vector::normalise()
-{
-
 }
