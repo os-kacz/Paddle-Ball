@@ -19,10 +19,11 @@ class Game
   sf::RenderWindow& window;
   sf::Sprite ball;
   sf::Text menu_text;
+  sf::Text game_text;
   sf::Font font;
   sf::Texture ball_texture;
   bool in_menu;
-  float speed = 500;
+  float speed = 300;
   Vector ball_direction;
 };
 
