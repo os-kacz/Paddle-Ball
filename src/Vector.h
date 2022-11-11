@@ -7,7 +7,6 @@ class Vector
    float x;
    float y;
    float mag;
-   float inverter;
    void normalise();
    void affector();
 };

@@ -24,6 +24,16 @@ bool Game::init()
     std::cout << "Error loading ball texture";
     return false;
   }
+  if (!redpad_texture.loadFromFile("Data/Images/paddleRed.png"))
+  {
+    std::cout << "Error loading red paddle texture";
+    return false;
+  }
+  if (!bluepad_texture.loadFromFile("Data/Images/paddleBlue.png"))
+  {
+    std::cout << "Error loading blue paddle texture";
+    return false;
+  }
   in_menu = true;
   menu_text.setString("Press enter to start game");
   menu_text.setFont(font);
@@ -39,11 +49,13 @@ bool Game::init()
   game_text.setFillColor(sf::Color::White);
   game_text.setPosition(20, 20);
 
+  paddle_blu.setTexture(bluepad_texture);
+  paddle_red.setTexture(redpad_texture);
   ball.setTexture(ball_texture);
   spawn();
 
-  ball_direction.x = 9;
-  ball_direction.y = 26;
+  ball_direction.x = 1;
+  ball_direction.y = 1;
   ball_direction.normalise();
 
   return true;
@@ -65,6 +77,14 @@ void Game::update(float dt)
     ball_direction.affector();
     ball_direction.normalise();
   }
+  if (paddle_state == 1)
+  {
+    paddle_red.move(0, -1 * speed * dt);
+  }
+  else
+  {
+    paddle_red.move(0, 1 * speed * dt);
+  }
 }
 
 void Game::render()
@@ -77,6 +97,8 @@ void Game::render()
   {
     window.draw(ball);
     window.draw(game_text);
+    window.draw(paddle_red);
+    window.draw(paddle_blu);
   }
 }
 
@@ -92,11 +114,25 @@ void Game::keyPressed(sf::Event event)
   {
     in_menu = !in_menu;
   }
+  if (event.key.code == sf::Keyboard::Up)
+  {
+    paddle_state = 1;
+  }
+  if (event.key.code == sf::Keyboard::Down)
+  {
+    paddle_state = -1;
+  }
 }
 
 void Game::spawn()
 {
-  ball.setScale(0.5,0.5);
+  ball.setScale(0.2,0.2);
   ball.setPosition(window.getSize().x / 2 - ball.getGlobalBounds().width / 2,
                    window.getSize().y / 2 - ball.getGlobalBounds().height / 2);
+
+  paddle_red.setPosition(40, window.getSize().y / 2);
+  paddle_red.setRotation(90);
+
+  paddle_blu.setPosition((window.getSize().x - 20), window.getSize().y / 2);
+  paddle_blu.setRotation(90);
 }

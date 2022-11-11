@@ -1,6 +1,5 @@
 #include "Vector.h"
 #include "Game.h"
-#include <iostream>
 #include <cmath>
 
 void Vector::normalise()
@@ -17,12 +16,12 @@ void Vector::affector()
   float variation_degree = std::rand() % 2 + 1;
   if (variation_degree == 1)
   {
-    inverter = 1;
+    x += ((std::rand() % 10 + 1) * 1);
+    y += ((std::rand() % 10 + 1) * 1);
   }
   else
   {
-    inverter = -1;
+    x += ((std::rand() % 10 + 1) * -1);
+    y += ((std::rand() % 10 + 1) * -1);
   }
-  x += ((std::rand() % 3 + 1) * inverter);
-  y += ((std::rand() % 3 + 1) * inverter);
 }
