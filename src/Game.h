@@ -31,8 +31,8 @@ class Game
   float speed = 300;
   float paddle_speed = 30;
   Vector ball_direction;
-  float paddle_accel = 0;
-  bool paddle_decel = false;
+  float paddle_red_accel = 0;
+  float paddle_blu_accel = 0;
 };
 
 #endif // PONG_GAME_H
