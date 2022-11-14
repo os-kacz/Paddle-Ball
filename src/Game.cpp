@@ -84,7 +84,7 @@ void Game::update(float dt)
   {
     ball_direction.x = ball_direction.x * -1;
   } // collision check for blue paddle
-  if (ball.getPosition().x > (paddle_blu.getPosition().x - paddle_blu.getGlobalBounds().width)
+  if (ball.getPosition().x > (paddle_blu.getPosition().x + paddle_blu.getGlobalBounds().width)
       && ball.getPosition().y < (paddle_blu.getPosition().y + paddle_blu.getGlobalBounds().height)
       && ball.getPosition().y > (paddle_blu.getPosition().y))
   {
@@ -154,6 +154,6 @@ void Game::spawn()
   paddle_red.setPosition(40, window.getSize().y / 2);
   paddle_red.setRotation(90);
 
-  paddle_blu.setPosition(window.getSize().x - 20, window.getSize().y / 2);
-  paddle_blu.setRotation(90);
+  paddle_blu.setPosition(window.getSize().x - 40, window.getSize().y / 2);
+  paddle_blu.setRotation(-90);
 }
