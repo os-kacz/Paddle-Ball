@@ -47,6 +47,10 @@ int main()
       {
         game.keyPressed(event);
       }
+      if (event.type == sf::Event::KeyReleased)
+      {
+        game.keyReleased(event);
+      }
     }
 
     //'update' element of the game loop

@@ -13,6 +13,7 @@ class Game
   void render();
   void mouseClicked(sf::Event event);
   void keyPressed(sf::Event event);
+  void keyReleased(sf::Event event);
 
  private:
   void spawn();
@@ -28,9 +29,10 @@ class Game
   sf::Texture bluepad_texture;
   bool in_menu;
   float speed = 300;
+  float paddle_speed = 30;
   Vector ball_direction;
-  int paddle_state;
-  bool no_input;
+  float paddle_accel = 0;
+  bool paddle_decel = false;
 };
 
 #endif // PONG_GAME_H

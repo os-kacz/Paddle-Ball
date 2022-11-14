@@ -54,8 +54,8 @@ bool Game::init()
   ball.setTexture(ball_texture);
   spawn();
 
-  ball_direction.x = 1;
-  ball_direction.y = 1;
+  ball_direction.x = 5;
+  ball_direction.y = 4;
   ball_direction.normalise();
 
   return true;
@@ -64,26 +64,22 @@ bool Game::init()
 void Game::update(float dt)
 {
   game_text.setString("("+std::to_string(ball_direction.x)+" "+std::to_string(ball_direction.y)+")");
+
   ball.move(ball_direction.x * speed * dt, ball_direction.y * speed * dt);
+
+  paddle_red.move(0,paddle_accel * paddle_speed * dt);
+
   if (ball.getPosition().y < 0 || (ball.getPosition().y > (window.getSize().y - ball.getGlobalBounds().height)))
   {
     ball_direction.y = ball_direction.y * -1;
-    ball_direction.affector();
-    ball_direction.normalise();
   }
   if (ball.getPosition().x < 0 || (ball.getPosition().x > (window.getSize().x - ball.getGlobalBounds().width)))
   {
     ball_direction.x = ball_direction.x * -1;
-    ball_direction.affector();
-    ball_direction.normalise();
   }
-  if (paddle_state == 1)
+  if (ball.getPosition().x < (paddle_red.getPosition().x + paddle_red.getGlobalBounds().width))
   {
-    paddle_red.move(0, -1 * speed * dt);
-  }
-  else
-  {
-    paddle_red.move(0, 1 * speed * dt);
+    ball_direction.x = ball_direction.x * -1;
   }
 }
 
@@ -116,17 +112,29 @@ void Game::keyPressed(sf::Event event)
   }
   if (event.key.code == sf::Keyboard::Up)
   {
-    paddle_state = 1;
+    paddle_accel = -10;
   }
   if (event.key.code == sf::Keyboard::Down)
   {
-    paddle_state = -1;
+    paddle_accel = 10;
+  }
+}
+
+void Game::keyReleased(sf::Event event)
+{
+  if (event.key.code == sf::Keyboard::Up)
+  {
+    paddle_accel = 0;
+  }
+  if (event.key.code == sf::Keyboard::Down)
+  {
+    paddle_accel = 0;
   }
 }
 
 void Game::spawn()
 {
-  ball.setScale(0.2,0.2);
+  ball.setScale(0.35,0.35);
   ball.setPosition(window.getSize().x / 2 - ball.getGlobalBounds().width / 2,
                    window.getSize().y / 2 - ball.getGlobalBounds().height / 2);
 
