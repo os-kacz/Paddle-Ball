@@ -84,9 +84,10 @@ void Game::update(float dt)
   {
     ball_direction.x = ball_direction.x * -1;
   } // collision check for blue paddle
-  if (ball.getPosition().x > (paddle_blu.getPosition().x + paddle_blu.getGlobalBounds().width)
-      && ball.getPosition().y < (paddle_blu.getPosition().y + paddle_blu.getGlobalBounds().height)
-      && ball.getPosition().y > (paddle_blu.getPosition().y))
+  if ((ball.getPosition().x + ball.getGlobalBounds().width) > paddle_blu.getPosition().x
+      && ball.getPosition().y > (paddle_blu.getPosition().y - paddle_blu.getGlobalBounds().height)
+      && ball.getPosition().y < (paddle_blu.getPosition().y)
+      )
   {
     ball_direction.x = ball_direction.x * -1;
   }
