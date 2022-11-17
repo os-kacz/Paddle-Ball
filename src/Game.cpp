@@ -1,6 +1,7 @@
 #include "Game.h"
 #include "Vector.h"
 #include <iostream>
+#include <cmath>
 
 Game::Game(sf::RenderWindow& game_window) : window(game_window)
 {
@@ -49,6 +50,12 @@ bool Game::init()
   game_text.setFillColor(sf::Color::White);
   game_text.setPosition(20, 20);
 
+  score_text.setString("Red: "+std::to_string(red_score)+"\nBlue: "+std::to_string(blu_score));
+  score_text.setFont(font);
+  score_text.setCharacterSize(20);
+  score_text.setFillColor(sf::Color::White);
+  score_text.setPosition(window.getSize().x - 200, 20);
+
   paddle_blu.setTexture(bluepad_texture);
   paddle_red.setTexture(redpad_texture);
   ball.setTexture(ball_texture);
@@ -64,6 +71,7 @@ bool Game::init()
 void Game::update(float dt)
 {
   game_text.setString("("+std::to_string(ball_direction.x)+" "+std::to_string(ball_direction.y)+")");
+  score_text.setString("Red: "+std::to_string(red_score)+"\nBlue: "+std::to_string(blu_score));
 
   ball.move(ball_direction.x * speed * dt, ball_direction.y * speed * dt);
 
@@ -74,20 +82,27 @@ void Game::update(float dt)
   {
     ball_direction.y = ball_direction.y * -1;
   } // collision check for left and right wall
-  if (ball.getPosition().x < 0 || (ball.getPosition().x > (window.getSize().x - ball.getGlobalBounds().width)))
+  if (ball.getPosition().x < 0)
   {
-    ball_direction.x = ball_direction.x * -1;
-  } // collision check for red paddle
+    blu_score += 1;
+    ball.setPosition(window.getSize().x / 2, window.getSize().y / 2);
+  }
+  if (ball.getPosition().x > (window.getSize().x - ball.getGlobalBounds().width))
+  {
+    red_score += 1;
+    ball.setPosition(window.getSize().x / 2, window.getSize().y / 2);
+  }
+  // collision check for red paddle
   if (ball.getPosition().x < paddle_red.getPosition().x
       && ball.getPosition().y < (paddle_red.getPosition().y + paddle_red.getGlobalBounds().height)
       && ball.getPosition().y > (paddle_red.getPosition().y))
   {
     ball_direction.x = ball_direction.x * -1;
-  } // collision check for blue paddle
+  }
+    // collision check for blue paddle
   if ((ball.getPosition().x + ball.getGlobalBounds().width) > paddle_blu.getPosition().x
       && ball.getPosition().y > (paddle_blu.getPosition().y - paddle_blu.getGlobalBounds().height)
-      && ball.getPosition().y < (paddle_blu.getPosition().y)
-      )
+      && ball.getPosition().y < (paddle_blu.getPosition().y))
   {
     ball_direction.x = ball_direction.x * -1;
   }
@@ -103,6 +118,7 @@ void Game::render()
   {
     window.draw(ball);
     window.draw(game_text);
+    window.draw(score_text);
     window.draw(paddle_red);
     window.draw(paddle_blu);
   }
@@ -122,13 +138,19 @@ void Game::keyPressed(sf::Event event)
   }
   if (event.key.code == sf::Keyboard::Up)
   {
-    paddle_red_accel = -10;
     paddle_blu_accel = -10;
   }
   if (event.key.code == sf::Keyboard::Down)
   {
-    paddle_red_accel = 10;
     paddle_blu_accel = 10;
+  }
+  if (event.key.code == sf::Keyboard::W)
+  {
+    paddle_red_accel = -10;
+  }
+  if (event.key.code == sf::Keyboard::S)
+  {
+    paddle_red_accel = 10;
   }
 }
 
@@ -136,13 +158,19 @@ void Game::keyReleased(sf::Event event)
 {
   if (event.key.code == sf::Keyboard::Up)
   {
-    paddle_red_accel = 0;
     paddle_blu_accel = 0;
   }
   if (event.key.code == sf::Keyboard::Down)
   {
-    paddle_red_accel = 0;
     paddle_blu_accel = 0;
+  }
+  if (event.key.code == sf::Keyboard::W)
+  {
+    paddle_red_accel = 0;
+  }
+  if (event.key.code == sf::Keyboard::S)
+  {
+    paddle_red_accel = 0;
   }
 }
 
