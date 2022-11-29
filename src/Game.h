@@ -1,6 +1,7 @@
 #ifndef PONG_GAME_H
 #define PONG_GAME_H
 #include "Vector.h"
+#include "GameState.h"
 #include <SFML/Graphics.hpp>
 
 class Game
@@ -14,6 +15,15 @@ class Game
   void mouseClicked(sf::Event event);
   void keyPressed(sf::Event event);
   void keyReleased(sf::Event event);
+  sf::Text menu_text;
+  sf::Text game_text;
+  sf::Text red_score_text;
+  sf::Text blu_score_text;
+  sf::Text quit_text;
+  sf::Text end_text;
+  sf::Text quit_options;
+  sf::Text menu_options;
+  sf::Font font;
 
  private:
   void spawn();
@@ -21,16 +31,13 @@ class Game
   sf::Sprite ball;
   sf::Sprite paddle_red;
   sf::Sprite paddle_blu;
-  sf::Text menu_text;
-  sf::Text game_text;
-  sf::Text score_text;
-  sf::Font font;
   sf::Texture ball_texture;
   sf::Texture redpad_texture;
   sf::Texture bluepad_texture;
-  bool in_menu;
-  float speed = 500;
+  float speed = 375;
   float paddle_speed = 30;
+  GameState menu;
+  bool YN;
   Vector ball_direction;
   float paddle_red_accel = 0;
   float paddle_blu_accel = 0;
