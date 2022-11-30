@@ -102,7 +102,7 @@ void Game::update(float dt)
     paddle_blu.move(0,0);
     paddle_red.move(0,0);
   }
-  else
+  else if (menu.State == menu.PLAY_GAME)
   {
     blu_score_text.setString(std::to_string(blu_score));
     red_score_text.setString(std::to_string(red_score));
@@ -112,6 +112,7 @@ void Game::update(float dt)
 
     paddle_red.move(0, paddle_red_accel * paddle_speed * dt);
     paddle_blu.move(0, paddle_blu_accel * paddle_speed * dt);
+
     // collision check for top and bottom wall
     if (ball.getPosition().y < 0 ||
       (ball.getPosition().y >
@@ -276,19 +277,19 @@ void Game::keyReleased(sf::Event event)
   {
     if (event.key.code == sf::Keyboard::Up && paddle_blu_accel != 10)
     {
-        paddle_blu_accel = 0;
+      paddle_blu_accel = 0;
     }
     if (event.key.code == sf::Keyboard::Down && paddle_blu_accel != -10)
     {
-        paddle_blu_accel = 0;
+      paddle_blu_accel = 0;
     }
     if (event.key.code == sf::Keyboard::W && paddle_red_accel != 10)
     {
-        paddle_red_accel = 0;
+      paddle_red_accel = 0;
     }
     if (event.key.code == sf::Keyboard::S && paddle_red_accel != -10)
     {
-        paddle_red_accel = 0;
+      paddle_red_accel = 0;
     }
   }
 }
