@@ -274,21 +274,21 @@ void Game::keyReleased(sf::Event event)
 {
   if (menu.State == menu.PLAY_GAME)
   {
-    if (event.key.code == sf::Keyboard::Up)
+    if (event.key.code == sf::Keyboard::Up && paddle_blu_accel != 10)
     {
-      paddle_blu_accel = 0;
+        paddle_blu_accel = 0;
     }
-    if (event.key.code == sf::Keyboard::Down)
+    if (event.key.code == sf::Keyboard::Down && paddle_blu_accel != -10)
     {
-      paddle_blu_accel = 0;
+        paddle_blu_accel = 0;
     }
-    if (event.key.code == sf::Keyboard::W)
+    if (event.key.code == sf::Keyboard::W && paddle_red_accel != 10)
     {
-      paddle_red_accel = 0;
+        paddle_red_accel = 0;
     }
-    if (event.key.code == sf::Keyboard::S)
+    if (event.key.code == sf::Keyboard::S && paddle_red_accel != -10)
     {
-      paddle_red_accel = 0;
+        paddle_red_accel = 0;
     }
   }
 }
