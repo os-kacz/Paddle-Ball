@@ -113,8 +113,7 @@ void Game::update(float dt)
     paddle_red.move(0, paddle_red_accel * paddle_speed * dt);
     paddle_blu.move(0, paddle_blu_accel * paddle_speed * dt);
     // collision check for top and bottom wall
-    if (
-      ball.getPosition().y < 0 ||
+    if (ball.getPosition().y < 0 ||
       (ball.getPosition().y >
        (window.getSize().y - ball.getGlobalBounds().height)))
     {
@@ -131,8 +130,7 @@ void Game::update(float dt)
       ball.setPosition(window.getSize().x / 2, window.getSize().y / 2);
     }
     // collision check for red paddle
-    if (
-      ball.getPosition().x < paddle_red.getPosition().x &&
+    if (ball.getPosition().x < paddle_red.getPosition().x &&
       ball.getPosition().y <
         (paddle_red.getPosition().y + paddle_red.getGlobalBounds().height) &&
       ball.getPosition().y > (paddle_red.getPosition().y))
@@ -140,14 +138,31 @@ void Game::update(float dt)
       ball_direction.x = ball_direction.x * -1;
     }
     // collision check for blue paddle
-    if (
-      (ball.getPosition().x + ball.getGlobalBounds().width) >
+    if ((ball.getPosition().x + ball.getGlobalBounds().width) >
         paddle_blu.getPosition().x &&
       ball.getPosition().y >
         (paddle_blu.getPosition().y - paddle_blu.getGlobalBounds().height) &&
       ball.getPosition().y < (paddle_blu.getPosition().y))
     {
       ball_direction.x = ball_direction.x * -1;
+    }
+    // red paddle check for edge of window
+    if (paddle_red.getPosition().y > (window.getSize().y - paddle_red.getGlobalBounds().height))
+    {
+      paddle_red.setPosition(paddle_red.getPosition().x, (window.getSize().y - paddle_red.getGlobalBounds().height));
+    }
+    if (paddle_red.getPosition().y < 0)
+    {
+      paddle_red.setPosition(paddle_red.getPosition().x, 0);
+    }
+    // blue paddle check for edge of window
+    if (paddle_blu.getPosition().y > window.getSize().y)
+    {
+      paddle_blu.setPosition(paddle_blu.getPosition().x, window.getSize().y);
+    }
+    if (paddle_blu.getPosition().y < paddle_blu.getGlobalBounds().height)
+    {
+      paddle_blu.setPosition(paddle_blu.getPosition().x, paddle_blu.getGlobalBounds().height);
     }
   }
   if (YN)
