@@ -80,8 +80,6 @@ bool Game::init()
     window.getSize().x / 2 - menu_text.getGlobalBounds().width / 2,
     (window.getSize().y / 2 - menu_text.getGlobalBounds().height / 2) + 20);
 
-
-
   paddle_blu.setTexture(bluepad_texture);
   paddle_red.setTexture(redpad_texture);
   ball.setTexture(ball_texture);
@@ -104,6 +102,7 @@ void Game::update(float dt)
   }
   else if (menu.State == menu.PLAY_GAME)
   {
+    respawnTimer(dt);
     blu_score_text.setString(std::to_string(blu_score));
     red_score_text.setString(std::to_string(red_score));
     game_text.setString("("+std::to_string(ball_direction.x)+" "+std::to_string(ball_direction.y)+")");
@@ -188,7 +187,10 @@ void Game::render()
     }
     case (2):
     {
-      window.draw(ball);
+      if (!respawn)
+      {
+        window.draw(ball);
+      }
       window.draw(game_text);
       window.draw(red_score_text);
       window.draw(blu_score_text);
@@ -307,4 +309,21 @@ void Game::spawn()
   paddle_blu.setScale(1.4,1);
   paddle_blu.setPosition(window.getSize().x - 40, window.getSize().y / 2);
   paddle_blu.setRotation(-90);
+}
+
+bool Game::respawnTimer(float dt)
+{
+  respawn_timer_value -= dt * 10;
+  std::cout << respawn_timer_value << std::endl;
+  if (respawn_timer_value < 0)
+  {
+    std::cout << "True\n";
+    respawn_timer_value = 10;
+    return true;
+  }
+  else
+  {
+    std::cout << "False\n";
+    return false;
+  }
 }
