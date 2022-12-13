@@ -12,7 +12,6 @@ class Game
   bool init();
   void update(float dt);
   void render();
-  void mouseClicked(sf::Event event);
   void keyPressed(sf::Event event);
   void keyReleased(sf::Event event);
   sf::Text menu_text;
@@ -27,6 +26,7 @@ class Game
 
  private:
   void spawn();
+  std::string winner = "Saxton Hale";
   sf::RenderWindow& window;
   sf::Sprite ball;
   sf::Sprite paddle_red;
@@ -34,7 +34,7 @@ class Game
   sf::Texture ball_texture;
   sf::Texture redpad_texture;
   sf::Texture bluepad_texture;
-  float speed = 375;
+  float speed = 450;
   float paddle_speed = 30;
   GameState menu;
   bool YN;

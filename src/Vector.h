@@ -8,7 +8,6 @@ class Vector
    float y;
    float mag;
    void normalise();
-   void affector();
 };
 
 #endif // PONGSFML_VECTOR_H
