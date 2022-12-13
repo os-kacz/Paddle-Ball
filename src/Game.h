@@ -11,6 +11,7 @@ class Game
   ~Game();
   bool init();
   void update(float dt);
+  bool respawnTimer(float dt);
   void render();
   void keyPressed(sf::Event event);
   void keyReleased(sf::Event event);
@@ -38,6 +39,8 @@ class Game
   float paddle_speed = 30;
   GameState menu;
   bool YN;
+  bool respawn = false;
+  float respawn_timer_value = 10;
   Vector ball_direction;
   float paddle_red_accel = 0;
   float paddle_blu_accel = 0;

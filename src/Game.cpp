@@ -216,7 +216,10 @@ void Game::render()
     }
     case (2):// live game
     {
-      window.draw(ball);
+      if (!respawn)
+      {
+        window.draw(ball);
+      }
       window.draw(game_text);
       window.draw(red_score_text);
       window.draw(blu_score_text);
@@ -356,4 +359,21 @@ void Game::spawn()
   paddle_blu.setScale(1.4,1);
   paddle_blu.setPosition(window.getSize().x - 40, window.getSize().y / 2);
   paddle_blu.setRotation(-90);
+}
+
+bool Game::respawnTimer(float dt)
+{
+  respawn_timer_value -= dt * 10;
+  std::cout << respawn_timer_value << std::endl;
+  if (respawn_timer_value < 0)
+  {
+    std::cout << "True\n";
+    respawn_timer_value = 10;
+    return true;
+  }
+  else
+  {
+    std::cout << "False\n";
+    return false;
+  }
 }
