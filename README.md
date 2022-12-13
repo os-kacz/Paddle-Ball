@@ -2,22 +2,33 @@
 Welcome to Pong Game. It was very fun to make this :)
 ## Controls
 ### Player 1
-Player 1 controls the red paddle on the left side of the screen
+#### Player 1 controls the red paddle on the left side of the screen
+
 **W** to go up
+
 **S** to go down
+
 **Ctrl** to pause game
 
+
 ### Player 2
-Player 2 controls the blue paddle on the right side of the screen
+#### Player 2 controls the blue paddle on the right side of the screen
+
 **↑** to go up
+
 **↓** to go down
+
 **Ctrl** to pause game
 
 ### Debug and Testing
-The number keys 1 through 4 allow you to switch to different game states
+#### The number keys 1 through 4 allow you to switch to different game states
+
 **1** goes to the main menu
+
 **2** goes to the live game state
+
 **3** goes to the user-defined quit menu
+
 **4** goes to the game-defined quit menu
 
 ## Features
