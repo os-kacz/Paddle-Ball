@@ -11,7 +11,6 @@ class Game
   ~Game();
   bool init();
   void update(float dt);
-  bool respawnTimer(float dt);
   void render();
   void keyPressed(sf::Event event);
   void keyReleased(sf::Event event);
