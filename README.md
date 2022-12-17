@@ -1,5 +1,7 @@
 # Pong Game
 Welcome to Pong Game. It was very fun to make this :)
+
+**(Please find supporting documents like the flowchart and class diagram in "pong-22-23-os-kacz/docu")**
 ## Controls
 ### Player 1
 #### Player 1 controls the red paddle on the left side of the screen
@@ -20,6 +22,7 @@ Welcome to Pong Game. It was very fun to make this :)
 
 **Ctrl** to pause game
 
+
 ### Debug and Testing
 #### The number keys 1 through 4 allow you to switch to different game states
 
@@ -30,6 +33,7 @@ Welcome to Pong Game. It was very fun to make this :)
 **3** goes to the user-defined quit menu
 
 **4** goes to the game-defined quit menu
+
 
 ## Features
  - A bouncing ball! It goes back and forth with some up and down movement.

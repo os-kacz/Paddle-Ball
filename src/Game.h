@@ -38,8 +38,6 @@ class Game
   float paddle_speed = 30;
   GameState menu;
   bool YN;
-  bool respawn = false;
-  float respawn_timer_value = 10;
   Vector ball_direction;
   float paddle_red_accel = 0;
   float paddle_blu_accel = 0;

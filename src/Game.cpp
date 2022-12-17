@@ -150,18 +150,14 @@ void Game::update(float dt)
     }
     // collision check for red paddle
     if (ball.getPosition().x < paddle_red.getPosition().x &&
-      ball.getPosition().y <
+          ball.getPosition().y <
         (paddle_red.getPosition().y + paddle_red.getGlobalBounds().height) &&
-      ball.getPosition().y > (paddle_red.getPosition().y))
-    {
-      ball_direction.x = ball_direction.x * -1;
-    }
-    // collision check for blue paddle
-    if ((ball.getPosition().x + ball.getGlobalBounds().width) >
-        paddle_blu.getPosition().x &&
-      ball.getPosition().y >
+          ball.getPosition().y > (paddle_red.getPosition().y)
+        || // collision check for blue paddle
+        (ball.getPosition().x + ball.getGlobalBounds().width) >
+          paddle_blu.getPosition().x && ball.getPosition().y >
         (paddle_blu.getPosition().y - paddle_blu.getGlobalBounds().height) &&
-      ball.getPosition().y < (paddle_blu.getPosition().y))
+          ball.getPosition().y < (paddle_blu.getPosition().y))
     {
       ball_direction.x = ball_direction.x * -1;
     }
@@ -274,13 +270,12 @@ void Game::keyPressed(sf::Event event)
     {
       paddle_red_accel = 10;
     }
-  }
-  // access pause menu whilst only in live game state
-  if ((event.key.code == sf::Keyboard::LControl ||
+    if (event.key.code == sf::Keyboard::LControl ||
        event.key.code == sf::Keyboard::RControl ||
-       event.key.code == sf::Keyboard::Num3) && menu.State == menu.PLAY_GAME)
-  {
-    menu.State = menu.QUIT_MENU;
+       event.key.code == sf::Keyboard::Num3)
+    {
+      menu.State = menu.QUIT_MENU;
+    }
   }
   if (event.key.code == sf::Keyboard::Num4)
   {
