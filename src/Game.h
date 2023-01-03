@@ -36,9 +36,9 @@ class Game
   sf::Texture bluepad_texture;
   float speed = 450;
   float paddle_speed = 30;
-  GameState menu;
-  bool YN;
-  Vector ball_direction;
+  GameState menu{};
+  bool YN{};
+  Vector ball_direction{};
   float paddle_red_accel = 0;
   float paddle_blu_accel = 0;
   int red_score = 0;
